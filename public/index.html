@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task & Link Manager Web</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <h1>Tasks <span class="badge">Web Portal</span></h1>
+      <p class="subtitle">Organize and sync your links securely via SQLite</p>
+    </header>
+
+    <div class="main-content">
+      <form id="add-task-form" class="input-group">
+        <div class="task-form-inputs">
+          <input type="text" id="new-task-input" placeholder="Create a new task..." autocomplete="off" required />
+          <textarea id="new-task-desc" placeholder="Add a short description (optional)..." rows="2"></textarea>
+          <div class="priority-selector">
+              <label for="new-task-priority">Priority: </label>
+              <select id="new-task-priority">
+                  <option value="low">Low</option>
+                  <option value="medium" selected>Medium</option>
+                  <option value="high">High</option>
+              </select>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary" title="Add Task">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+        </button>
+      </form>
+
+      <ul id="task-list" class="task-list">
+        <!-- Tasks will be injected here via JavaScript -->
+      </ul>
+    </div>
+  </div>
+
+  <template id="task-template">
+    <li class="task-item">
+      <div class="task-header">
+        <div class="task-header-content">
+          <div class="task-display-mode">
+            <span class="task-title"></span>
+            <span class="priority-badge"></span>
+            <p class="task-desc"></p>
+          </div>
+          <form class="task-edit-mode" style="display: none;">
+            <input type="text" class="edit-task-title task-edit-input" required />
+            <textarea class="edit-task-desc task-edit-input" rows="2"></textarea>
+            <div class="priority-selector edit-priority-wrapper">
+                <label>Priority: </label>
+                <select class="edit-task-priority">
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select>
+            </div>
+            <div class="edit-actions">
+              <button type="submit" class="btn btn-primary btn-sm">Save</button>
+              <button type="button" class="btn btn-secondary btn-sm btn-cancel-edit">Cancel</button>
+            </div>
+          </form>
+        </div>
+        <div class="task-header-actions">
+          <button class="btn btn-icon btn-edit-task" title="Edit Task">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+          </button>
+          <button class="btn btn-icon btn-delete-task" title="Delete Task">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+          </button>
+        </div>
+      </div>
+      
+      <ul class="link-list">
+        <!-- Links will be injected here -->
+      </ul>
+
+      <div class="task-actions">
+        <form class="add-link-form">
+          <input type="url" class="new-link-input" placeholder="https://..." required />
+          <button type="submit" class="btn btn-secondary btn-add-link" title="Add Link">Add</button>
+        </form>
+      </div>
+    </li>
+  </template>
+
+  <template id="link-template">
+    <li class="link-item">
+      <a href="#" class="link-anchor" target="_blank" rel="noopener noreferrer"></a>
+      <button class="btn btn-icon btn-delete-link" title="Remove Link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </li>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
