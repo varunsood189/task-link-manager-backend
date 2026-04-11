@@ -52,5 +52,5 @@ The SQLite database consists of two main tables with a one-to-many relationship:
 The backend includes a **companion web application** located in the `public/` directory. This allows you to manage your task list from any browser without needing the Chrome extension installed.
 
 ## 📄 License
-
+video : https://youtu.be/_U2FWmfxCPg
 This project is licensed under the ISC License.
